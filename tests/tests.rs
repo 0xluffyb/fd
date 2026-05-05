@@ -1461,6 +1461,14 @@ fn test_extension() {
     let te4 = TestEnv::new(&[], &[".hidden", "test.hidden"]);
 
     te4.assert_output(&["--hidden", "--extension", ".hidden"], "test.hidden");
+
+    let te5 = TestEnv::new(&["a.b"], &["a.b/inside.b", "regular.b"]);
+
+    te5.assert_output(
+        &["-e", "b"],
+        "a.b/inside.b
+        regular.b",
+    );
 }
 
 /// No file extension (test for the pattern provided in the --help text)
