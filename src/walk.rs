@@ -535,6 +535,13 @@ impl WorkerState {
 
                 // Filter out unwanted extensions.
                 if let Some(ref exts_regex) = config.extensions {
+                    if !entry
+                        .file_type()
+                        .is_some_and(|file_type| file_type.is_file())
+                    {
+                        return WalkState::Continue;
+                    }
+
                     if let Some(path_str) = entry_path.file_name() {
                         if !exts_regex.is_match(&filesystem::osstr_to_bytes(path_str)) {
                             return WalkState::Continue;
