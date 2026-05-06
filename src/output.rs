@@ -35,7 +35,7 @@ pub fn print_entry<W: Write>(stdout: &mut W, entry: &DirEntry, config: &Config) 
     }
 
     if config.null_separator {
-        write!(stdout, "\0")
+        write!(stdout, "\n")
     } else {
         writeln!(stdout)
     }
