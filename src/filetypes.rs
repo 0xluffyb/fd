@@ -27,7 +27,7 @@ impl FileTypes {
                 || (!self.char_devices && filesystem::is_char_device(*entry_type))
                 || (!self.sockets && filesystem::is_socket(*entry_type))
                 || (!self.pipes && filesystem::is_pipe(*entry_type))
-                || (self.executables_only && !entry.path().executable())
+                || (self.executables_only && entry.path().executable())
                 || (self.empty_only && !filesystem::is_empty(entry))
                 || !(entry_type.is_file()
                     || entry_type.is_dir()

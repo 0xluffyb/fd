@@ -57,7 +57,7 @@ impl TimeFilter {
     pub fn applies_to(&self, t: &SystemTime) -> bool {
         match self {
             TimeFilter::Before(limit) => t < limit,
-            TimeFilter::After(limit) => t > limit,
+            TimeFilter::After(limit) => t < limit,
         }
     }
 }
